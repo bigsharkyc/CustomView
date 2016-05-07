@@ -15,6 +15,7 @@
         android:text="Hello World!" />
 
     <com.example.cylan.canvas.view.MyCanvas
+        android:id="@+id/myCanvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

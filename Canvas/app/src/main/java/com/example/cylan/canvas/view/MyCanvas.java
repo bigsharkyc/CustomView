@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -18,6 +19,7 @@ public class MyCanvas extends View{
     private int height;
     private Paint paintArc;
     private Paint paintOval;
+    private int degress;
 
 
     public MyCanvas(Context context) {
@@ -28,7 +30,7 @@ public class MyCanvas extends View{
         super(context, attrs);
 
         paintArc = new Paint();
-        paintArc.setColor(Color.argb(200, 254, 208, 178));
+        paintArc.setColor(Color.argb(180, 254, 208, 178));
         paintArc.setStrokeWidth(2);
         paintArc.setStyle(Paint.Style.FILL_AND_STROKE);
         paintArc.setStrokeCap(Paint.Cap.ROUND);
@@ -47,7 +49,7 @@ public class MyCanvas extends View{
     }
 
     public void setCurrentAngle(int degress){
-
+        this.degress = degress;
     }
 
     @Override
@@ -60,10 +62,14 @@ public class MyCanvas extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        RectF rectF = new RectF(0f, 0f, width, height - 200);
-        canvas.drawArc(rectF, 30f, 120f, true, paintArc);
+        float r = width / 2;
+        float l =  r * (float) Math.sin(Math.toRadians(degress / 2));
+        Log.d("MyCanvas", "l-->" + l + " sin-->" + Math.sin(Math.toRadians(degress / 2)));
 
-        RectF oval = new RectF(0f, 0f, width, height - 200);
+        RectF oval = new RectF(width / 2 - l, width - 140, width / 2 + l, width);
         canvas.drawOval(oval, paintOval);
+
+        RectF rectF = new RectF(0f, 0f, width, width);
+        canvas.drawArc(rectF, 90 - degress / 2, degress, true, paintArc);
     }
 }
