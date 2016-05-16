@@ -7,12 +7,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by cylan on 2016/5/6.
+ * Created by yangc on 2016/5/6.
  * @author yangc
  */
 public class MyCanvas extends View{
@@ -185,7 +184,7 @@ public class MyCanvas extends View{
         if (degrees >= width / 2)
             return;
         degrees += distanceX;
-        Log.d("MyCanvas", "setUp, distanceX-->" + distanceX + " degrees-->" + degrees);
+//        Log.d("MyCanvas", "setUp, distanceX-->" + distanceX + " degrees-->" + degrees);
         postInvalidate();
         if (callback != null){
             callback.valueCallback((degrees / average - 3) >= 50 ? 50 : degrees / average);
@@ -196,7 +195,7 @@ public class MyCanvas extends View{
         if (degrees <= 5)
             return;
         degrees -= distanceX;
-        Log.d("MyCanvas", "setDown, distanceX-->" + distanceX + " degrees-->" + degrees);
+//        Log.d("MyCanvas", "setDown, distanceX-->" + distanceX + " degrees-->" + degrees);
         postInvalidate();
         if (callback != null){
             callback.valueCallback((degrees / average - 3) >= 50 ? 50 : degrees / average);
