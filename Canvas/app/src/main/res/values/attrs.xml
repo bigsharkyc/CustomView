@@ -4,4 +4,12 @@
         <attr name="pointer" format="reference"/>
         <attr name="bg_top" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="UpAndDownView">
+        <attr name="bg" format="reference"/>
+        <attr name="image_scale_type">
+            <enum name="fillXY" value="0"/>
+            <enum name="center" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>

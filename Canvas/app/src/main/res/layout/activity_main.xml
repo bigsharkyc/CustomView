@@ -20,10 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />-->
 
-    <com.example.cylan.canvas.view.VerticalView
+    <com.example.cylan.canvas.view.UpAndDownView
         android:id="@+id/vertical_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        custom:bg_top="@drawable/bg_top"
-        custom:pointer="@drawable/img_pointer"/>
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        custom:bg="@drawable/img_up_down"
+        custom:image_scale_type="center"/>
 </RelativeLayout>
