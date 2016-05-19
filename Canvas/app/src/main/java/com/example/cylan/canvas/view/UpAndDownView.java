@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -22,6 +24,8 @@ import com.example.cylan.canvas.R;
  */
 public class UpAndDownView extends View{
 
+    private static final String TAG = "UpAndDownView";
+
     private static final int MAX_LENGTH = 50;
     private static final int MIN_LENGTH = 0;
     private int width, height;
@@ -31,6 +35,8 @@ public class UpAndDownView extends View{
     private Bitmap bg;
     private Rect bg_rect;
     private Matrix bg_matrix;
+
+    private LongPressRunnable mLongPressRunnable;
     /**
      * 图片的缩放模式
      */
@@ -45,6 +51,7 @@ public class UpAndDownView extends View{
     public UpAndDownView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
         mPaint = new Paint();
+        mLongPressRunnable = new LongPressRunnable();
     }
 
     public UpAndDownView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -134,33 +141,87 @@ public class UpAndDownView extends View{
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean dispatchTouchEvent(MotionEvent event) {
         float y = event.getY();
         float x = event.getX();
         if (event.getAction() == MotionEvent.ACTION_DOWN){
+            Log.d(TAG, "ACTION_DOWN");
+            removeCallbacks(mLongPressRunnable);
             if (x >= width / 2 - 50 && x <= width / 2 + 50){
+                mLongPressRunnable.setCoordinate(x, y);
+                postDelayed(mLongPressRunnable, 500);
                 if (y >= height / 2 + bg.getHeight() / 2 && y <= height){
                     setUp();
                 }else if (y >= 0 && y <= height / 2 - bg.getHeight() / 2){
                     setDown();
                 }
             }
+        }else if (event.getAction() == MotionEvent.ACTION_UP){
+            Log.d(TAG, "ACTION_UP");
+            removeCallbacks(mLongPressRunnable);
+        }else if (event.getAction() == MotionEvent.ACTION_MOVE){
+            Log.d(TAG, "ACTION_MOVE");
         }
-        return super.onTouchEvent(event);
+        return true;
     }
 
     private void setDown(){
         if (length >= MIN_LENGTH){
+            callback.upAndDown(length);
             length--;
             postInvalidate();
+            Log.i(TAG, "setDown, length-->"+ length);
         }
     }
 
     private void setUp(){
         if (length <= MAX_LENGTH){
+            callback.upAndDown(length);
             length++;
             postInvalidate();
+            Log.i(TAG, "setUp, length-->" + length);
         }
     }
 
+    private class LongPressRunnable implements Runnable {
+
+        private float x, y;
+
+        public void setCoordinate(float x, float y){
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public void run() {
+            if (y >= height / 2 + bg.getHeight() / 2 && y <= height){
+                setUp();
+            }else if (y >= 0 && y <= height / 2 - bg.getHeight() / 2){
+                setDown();
+            }
+            mHandler.postDelayed(mLongPressRunnable, 500);
+        }
+    }
+
+    private static final int MSG_REPEATE = 0x01;
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == MSG_REPEATE){
+                post(mLongPressRunnable);
+            }
+        }
+    };
+
+    private UpAndDownCallback callback;
+
+    public void setUpAndDownCallback(UpAndDownCallback callback){
+        this.callback = callback;
+    }
+
+    public interface UpAndDownCallback{
+        void upAndDown(int length);
+    }
 }

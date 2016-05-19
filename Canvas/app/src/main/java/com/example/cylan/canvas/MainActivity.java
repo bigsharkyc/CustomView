@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.cylan.canvas.view.LeftAndRightView;
 import com.example.cylan.canvas.view.MyCanvas;
 import com.example.cylan.canvas.view.UpAndDownView;
 import com.example.cylan.canvas.view.VerticalView;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements MyCanvas.DegreesC
     MyCanvas myCanvas;
     VerticalView verticalView;
     UpAndDownView upAndDownView;
+    LeftAndRightView leftAndRightView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,13 @@ public class MainActivity extends AppCompatActivity implements MyCanvas.DegreesC
 //        myCanvas.setDegreesCallback(this);
 
 //        verticalView = (VerticalView) findViewById(R.id.vertical_view);
-        upAndDownView = (UpAndDownView) findViewById(R.id.vertical_view);
-        if (upAndDownView != null)
-            upAndDownView.setLength(49);
+//        upAndDownView = (UpAndDownView) findViewById(R.id.vertical_view);
+//        if (upAndDownView != null)
+//            upAndDownView.setLength(49);
+
+        leftAndRightView = (LeftAndRightView) findViewById(R.id.left_right);
+        if (leftAndRightView != null)
+            leftAndRightView.setDistance(50);
     }
 
     @Override

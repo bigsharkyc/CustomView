@@ -12,4 +12,9 @@
             <enum name="center" value="1"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="LeftAndRightView">
+        <attr name="light" format="reference"/>
+        <attr name="pole" format="reference"/>
+    </declare-styleable>
 </resources>
