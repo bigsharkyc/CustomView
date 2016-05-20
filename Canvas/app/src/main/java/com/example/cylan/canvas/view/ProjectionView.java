@@ -14,7 +14,7 @@ import android.view.View;
  * Created by yangc on 2016/5/6.
  * @author yangc
  */
-public class MyCanvas extends View{
+public class ProjectionView extends View{
 
     private static final float SCALE_LONG = 15f;
     private static final float SCALE_SHORT = 10f;
@@ -32,11 +32,11 @@ public class MyCanvas extends View{
 
     private DegreesCallback callback;
 
-    public MyCanvas(Context context) {
+    public ProjectionView(Context context) {
         super(context);
     }
 
-    public MyCanvas(Context context, AttributeSet attrs) {
+    public ProjectionView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         paintArc = new Paint();

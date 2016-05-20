@@ -28,11 +28,18 @@
         custom:bg="@drawable/img_up_down"
         custom:image_scale_type="center"/>-->
 
-    <com.example.cylan.canvas.view.LeftAndRightView
+  <!--  <com.example.cylan.canvas.view.LeftAndRightView
         android:id="@+id/left_right"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         custom:light="@drawable/img_left_right_light"
-        custom:pole="@drawable/img_left_right"/>
+        custom:pole="@drawable/img_left_right"/>-->
+
+    <com.example.cylan.canvas.view.VerticalView
+        android:id="@+id/vertical_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:pointer="@drawable/img_pointer"
+        custom:bg_top="@drawable/bg_top"/>
 </RelativeLayout>

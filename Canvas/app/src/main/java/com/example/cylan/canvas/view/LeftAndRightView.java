@@ -23,6 +23,7 @@ public class LeftAndRightView extends View{
     private static final String TAG = "LeftAndRightView";
     private static final int DEFAULT_VIEW_WIDTH = 100;
     private static final int DEFAULT_VIEW_HEIGHT = 25;
+    private static final int DEFAULT_LENGTH = 100;
 
     private int width, height;
     private int distance;
@@ -140,19 +141,60 @@ public class LeftAndRightView extends View{
         return true;
     }
 
+    /**
+     * 设置当前滑块的滑动距离，并更新View
+     * @param distance int
+     */
     public void setDistance(int distance){
         if (distance > 0 && distance <= rect_pole.right - bm_light.getWidth()){
             Log.d(TAG, "distance-->" + distance + " rightMarge-->" + (rect_pole.right - bm_light.getWidth()));
             this.distance = distance;
             postInvalidate();
+            if (callback != null)
+                callback.callback(getDistance());
         }
     }
 
+    /**
+     * 返回当前换算后的距离
+     * @return value
+     */
+    public int getDistance(){
+        int rate = (rect_pole.right - bm_light.getWidth()) / DEFAULT_LENGTH;
+        return distance / rate;
+    }
+
+    /**
+     * 设置回调接口{@link com.example.cylan.canvas.view.LeftAndRightView.LeftAndRightCallback}
+     * @param callback
+     */
     public void setLeftAndRightCallback(LeftAndRightCallback callback){
         this.callback = callback;
     }
 
+    /**
+     * 当前移动距离的回调接口
+     * @author  yangc
+     */
     public interface LeftAndRightCallback{
-        void callback(int distance);
+        void callback(int value);
+    }
+
+    /**
+     * 左移
+     * @param value int value
+     */
+    public void setUp(int value) {
+        int rate = (rect_pole.right - bm_light.getWidth()) / DEFAULT_LENGTH;
+        setDistance(value * rate);
+    }
+
+    /**
+     * 右移
+     * @param value int value
+     */
+    public void setDown(int value) {
+        int rate = (rect_pole.right - bm_light.getWidth()) / DEFAULT_LENGTH;
+        setDistance(value * rate);
     }
 }
