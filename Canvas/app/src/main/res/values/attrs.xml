@@ -17,4 +17,13 @@
         <attr name="light" format="reference"/>
         <attr name="pole" format="reference"/>
     </declare-styleable>
+    
+    <declare-styleable name="HorizontalView">
+        <attr name="instrument" format="reference"/>
+        <attr name="h_pointer" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="UponRotateImageView">
+        <attr name="angle" format="integer"/>
+    </declare-styleable>
 </resources>

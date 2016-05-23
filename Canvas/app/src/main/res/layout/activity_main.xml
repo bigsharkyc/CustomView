@@ -36,10 +36,54 @@
         custom:light="@drawable/img_left_right_light"
         custom:pole="@drawable/img_left_right"/>-->
 
-    <com.example.cylan.canvas.view.VerticalView
+<!--    <com.example.cylan.canvas.view.VerticalView
         android:id="@+id/vertical_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         custom:pointer="@drawable/img_pointer"
-        custom:bg_top="@drawable/bg_top"/>
+        custom:bg_top="@drawable/bg_top"/>-->
+
+    <!--<com.example.cylan.canvas.view.HorizontalView-->
+        <!--android:id="@+id/horizontal_view"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--custom:h_pointer="@drawable/ic_h_pointer"-->
+        <!--custom:instrument="@drawable/img_instrument"/>-->
+
+<!--    <com.example.cylan.canvas.view.RotateImageView
+        android:id="@+id/rotate_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />-->
+
+<!--    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_instrument"
+        android:layout_centerInParent="true"/>
+
+   <!-- <com.example.cylan.canvas.view.UponRotateImageView
+        android:id="@+id/upon_rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:rotation="90"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_h_pointer"
+        custom:angle="0"/>-->
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:src="@drawable/ic_h_pointer"
+        android:layout_centerInParent="true"
+        android:rotation="90"/>
 </RelativeLayout>
